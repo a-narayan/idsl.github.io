@@ -1,0 +1,45 @@
+{% assign pub_authors = pub.authors | split: ", " %}
+
+<li class="box box-left-border list-item">
+<span class="pub-type">
+  {% if pub.type == "paper" %}
+    <i>Journal Paper</i>
+  {% elsif pub.type == "conference" %}
+    <i>Conference Proceedings</i>
+  {% elsif pub.type == "patent" %}
+    <i>Patent</i>           
+  {% endif %}
+</span>
+
+{% if pub.notes %}
+<span class="tag is-info is-light">{{ pub.notes }}</span>
+{% endif %}   
+<br>
+
+<b class="large pub-title">
+  <a href="{{ pub.url }}">{{ pub.title }}</a>
+</b>
+<br>
+<span class="pub-authors">
+ {% include pub_authors.html %}
+</span>
+<br>
+
+<span class="pub-journal">
+  <i>
+    {% if pub.external_url %}
+      <a target="_blank" href="{{ pub.external_url }}">{{ pub.journal }}.</a>
+    {% else %}
+      {{ pub.journal }}.
+    {% endif %}
+  </i>
+{% if pub.pagenum %}
+  <br>
+  pp. {{ pub.pagenum }}.
+{% endif %}
+{{ pub.year }}
+</span>
+
+{% include pub_links.html pub=pub %}
+    
+</li>

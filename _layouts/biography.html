@@ -1,0 +1,112 @@
+---
+layout: basic
+---
+
+<div class="columns is-multiline">
+  <div class="column has-text-centered is-full-mobile is-one-fifth-desktop">   
+    <figure class="image is-128x128 is-inline-block is-round">
+      <img class="is-rounded is-profile" style="height: 100%; object-fit: cover;" src="{{ site.baseurl }}/assets/profile/{{ page.img }}" alt="{{ page.name }}">
+      <figcaption>{{ page.title }}</figcaption>
+    </figure>
+  </div>
+  <div class="column">
+    {% if page.biography.size > 1 %}
+      <p>{{ page.biography }}</p>
+      <br>
+      <br>
+    {% endif %}
+    <div class="columns">
+      <div class="column is-full-mobile is-one-quarter-desktop">
+        <b>📚 Program/Degree</b>
+      </div>
+      <div class="column">
+        {% if page.status == "alumni" %}
+          <b>GROUP ALUMNI ({{ page.year_end }})</b> |
+        {% endif %}        
+        {{ page.degree }}, started {{ page.year_start }}
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-full-mobile is-one-quarter-desktop">
+        <b>📝 Research</b>
+      </div>
+      <div class="column">
+        {{ page.project }}
+      </div>
+    </div>
+    {% if page.cosupervisor %}
+    <div class="columns">
+      <div class="column is-full-mobile is-one-quarter-desktop">
+        <b>👥 Also supervised by</b>
+      </div>
+      <div class="column">
+        {% for cos in page.cosupervisor %}
+          {% if cos.url %}
+            <a href="{{ cos.url }}" target="_blank">{{ cos.name }}</a>
+          {% else %}
+            {{ cos.name }}
+          {% endif %}
+          {% unless forloop.last %}
+          |
+          {% endunless %}
+        {% endfor %}
+
+      </div>
+    </div>
+    {% endif %}
+    <div class="columns">      
+      <div class="column is-full-mobile is-one-quarter-desktop">
+        <b>📨 Contact</b>
+      </div>
+      <div class="column">
+        {% assign email = page.email | split: "@" %}
+        <a href="#" class="cryptedmail"
+         data-name="{{ email[0] }}"
+         data-domain="{{ email[1] }}"
+         onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain; return false;">
+         </a>
+      </div>      
+    </div>
+    {% if page.github %}
+    <div class="columns">
+      <div class="column is-full-mobile is-one-quarter-desktop">
+        <b>💻 GitHub</b>
+      </div>
+      <div class="column">
+        <a href="{{ page.github }}">{{ page.github }}</a>
+      </div>
+    </div>
+    {% endif %}
+    {% if page.linkedin %}
+    <div class="columns">
+      <div class="column is-full-mobile is-one-quarter-desktop">
+        <b><i class="fab fa-linkedin mr-2"></i> Linkedin</b>
+      </div>
+      <div class="column">
+        <a target="_blank" href="{{ page.linkedin }}">{{ page.linkedin }}</a>
+      </div>
+    </div>
+    {% endif %}    
+    {% if page.website %}
+    <div class="columns">
+      <div class="column is-full-mobile is-one-quarter-desktop">
+        <b>🔗 Website</b>
+      </div>
+      <div class="column">
+        <a target="_blank" href="{{ page.website }}">{{ page.website }}</a>
+      </div>
+    </div>
+    {% endif %}
+    <div class="mt-6"></div>
+    <div class="columns">
+      <div class="column is-full-desktop">
+        {% include team_profile_pubs.html %}
+      </div>
+    </div>
+  </div>
+</div>
+<p class="is-size-7 has-text-weight-light has-text-grey">
+  <span class="tag is-light">{{ site.labshortname }} Member?</span> Submit a pull request or join the <a href="https://github.com/{{site.github_username}}"><span class="is-family-monospace">@{{site.github_username}}</span></a> organization on GitHub to update your profile - <a href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io/blob/master/_profiles/{{ page.title }}.md">{{ page.title }}.md</a>.
+</p>
+<hr>
+<p class="small is-7"><a href="{{ site.baseurl }}/people/"><span class="icon"><i class="fa fa-arrow-circle-left"></i></span>Back to Group Members</a></p>

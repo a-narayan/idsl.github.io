@@ -1,0 +1,59 @@
+<footer class="footer">
+  <div class="container">
+  <div class="columns">
+    <div class="column">
+      <h1 class="title is-spaced is-4 has-text-darkblue very-bold"><i class="fas fa-cubes"></i> {{ site.unishortname }} <b> {{ site.labshortname }} </b></h1>   
+      <p class="is-spaced is-5"> {{ site.footer_desc }} </p> 
+    </div>
+    <div class="column">
+      <div class="content">
+        <h1 class="title has-text-darkblue is-4 has-text-darkblue very-bold">Contact</h1>
+        {% include contact.html %}
+      </div>
+    </div>
+    <div class="column">
+      <div class="content">
+        <h1 class="title has-text-darkblue is-4 has-text-darkblue very-bold">Navigation</h1>
+          <ul itemprop="WebPageElement" itemscope itemtype="http://schema.org/SiteNavigationElement" class="list-nomargin footer-list no-deco no-list-deco" style="list-style-type: none;">
+          <li itemprop="name">
+            <a itemprop="url" class="footer-navbar-item" href="{{ site.baseurl }}/">
+              <b>Home</b>
+            </a>
+          </li>
+          {% for link in site.data.pages %}
+            {% if link.url %}
+              <li itemprop="name">
+                <a itemprop="url" class="footer-navbar-item" target="_blank" href="{{link.url}}/">
+                  {{ link.name }}
+                </a>
+              </li>
+            {% else %}
+              <li itemprop="name">
+                <a itemprop="url" class="footer-navbar-item" href="{{ site.baseurl }}/{{ link.name | downcase }}/"> 
+                  {{ link.name }}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+      </div>
+    </div>
+  </div>
+    <div class="column">
+      <hr>
+      <div class="content">
+
+        <p class="subtitle is-spaced is-5">
+          <strong>{{ site.labname }}</strong>
+        </p>
+        <p>
+          Research Group of {{ site.name }} at the {{ site.university }}, {{ site.location }}
+        </p>
+
+        <p class="mt-6">
+          All Rights Reserved. Website source on <a target="_blank" href="https://github.com/{{site.github_username}}/{{site.github_username}}.github.io">GitHub</a>.
+        </p>
+      </div>      
+    </div>  
+</div>
+</footer>

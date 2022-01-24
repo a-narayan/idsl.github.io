@@ -1,0 +1,9 @@
+{% assign pubs = site.papers | sort:"order" | reverse %}
+
+<p class="subtitle no-deco">
+  Recent Papers. <a href="{{ site.baseurl }}/publications/">All Publications</a>.
+</p>
+
+{% for pub in pubs | limit:3 %}
+    {% include single_pub_compact.html pub=pub %}
+{% endfor %}

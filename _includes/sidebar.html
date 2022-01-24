@@ -1,0 +1,63 @@
+{% assign highlights = site.data.highlights | where:"display", "True" | sort: 'date' | reverse %}
+
+<header class="sidebar-header">
+  <p class="title is-6">
+    <span><i class="fas fa-cubes"></i> {{ site.unishortname}} {{ site.labshortname }}</span>
+  </p>
+</header>
+
+<article class="message is-small is-light">
+  <div class="message-header">
+    <p><i class="fas fa-users"></i> Recruitment</p>
+  </div>
+  <div class="message-body">
+    {% include recruitment.html %}
+  </div>
+</article>                            
+
+
+{% for highlight in highlights %}
+<article class="message is-small is-warning">
+  <div class="message-header">
+    <b><i class="fas fa-bullhorn"></i> Highlights - {{ highlight.date | date_to_long_string}}</b>
+  </div>    
+  <div class="message-body">
+    <p>
+      {{ highlight.message }}
+    </p>
+    <p>
+      <a href="{{ highlight.url }}">LINK</a>
+    </p>
+  </div>
+</article>
+{% endfor %}
+
+<article class="message is-small is-light">
+  <div class="message-header">
+    <p><i class="fas fa-newspaper"></i> News</p>
+  </div>    
+  <div class="message-body">
+    {% assign articles = site.news | sort: 'date' | reverse %}
+    {% for news in articles limit: 5 %}
+    <p class="sidebar-news-date no-deco">
+      <small>{{ news.date | date_to_long_string}}</small><br>
+      <i class="fas fa-arrow-right"></i> {% if news.url %}
+      <a href="{{ news.url}}"><span>{{ news.title }}</span></a><br>
+      {% else %}
+      <span>{{ news.title }}</span><br>
+      {% endif %}
+    </p>
+    {% endfor %}
+    <br>
+    <p class="small is-7"><a href="{{ site.baseurl }}/news/">See More</a></p>
+  </div>
+</article>
+
+<article class="message is-small is-dark">
+  <div class="message-header">
+    <p><i class="fas fa-envelope"></i> Contact</p>
+  </div>
+  <div class="message-body">
+    {% include contact.html %}
+  </div>
+</article>                            

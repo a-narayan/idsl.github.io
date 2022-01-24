@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="canonical" href="{{ page.url | prepend: site.url }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ site.base_url }}/assets/img/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/dais.css" />
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+
+  <meta name="google-site-verification" content="{{ site.googleverification }}" />
+
+  {% seo %}
+  {% include structured_data.html %}
+
+</head>
+<body>
+  
+  {% include navbar.html %}
+  
+  {% if page.title == "Home" %}
+  <section class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column is-half is-full-tablet">
+            <p class="title is-1 is-spaced very-bold"><span class="has-text-darkblue"><i class="fas fa-cubes"></i> {{ site.labname}} </span></p>
+            <p class="subtitle is-5"><i>Paving the way for the next industrial revolution through <b>data.</b></i></p>
+            <hr>
+            <p class="subtitle is-4"> We develop <b>novel algorithms</b> and <b>computational tools</b> to bring a new level of automation to the process industry.</p>
+            <p class="title no-deco">
+              <div class="buttons">
+                <a href="{{ site.baseurl }}/research/" class="button is-sans-serif is-link"><i class="fas fa-microscope"></i>&nbsp; Research Overview</a>
+                <a href="{{ site.baseurl }}/news/" class="button is-sans-serif is-info"><i class="fas fa-newspaper"></i>&nbsp; Latest News</a>                
+              </div>
+            </p>
+          </div>
+          <div class="column">
+            <div class="container">
+              {% include homepage_recent_pubs.html %}
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </section> 
+  {% endif %}
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-variable">
+        <div class="column"> 
+          {{ content }}
+        </div>
+        <div class="column is-one-fifth is-hidden-mobile sidebar">
+          {% include sidebar.html %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include footer.html %}
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+    // Check for click events on the navbar burger icon
+    $(".navbar-burger").click(function() {
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+
+      });
+  });
+  </script>
+</body>
+</html>
